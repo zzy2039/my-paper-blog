@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+<title id="title">LP 松弛与混合整数可行域</title><desc id="desc">自编例子：最小化 -3u-v，2u+v≤4.5，u、v非负，u为整数，v为连续变量。左图 LP 为三角形，右图 MILP 为 u=0、1、2 的竖直线段。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker></defs>
+<style>text{font-family:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#17243b} .small{font-size:16px}.body{font-size:19px}.label{font-size:21px;font-weight:600}.title{font-size:28px;font-weight:700}</style>
+<rect width="1200" height="760" fill="white"/>
+<text x="40" y="48" class="title">01  LP 松弛与混合整数可行域</text>
+<text x="40" y="82" class="body" style="fill:#53657e">min −3u − v    |    2u + v ≤ 4.5    |    u ≥ 0, v ≥ 0</text>
+<rect x="30" y="108" width="550" height="546" rx="14" fill="#f8fafc" stroke="#dbe3ed"/>
+<rect x="620" y="108" width="550" height="546" rx="14" fill="#f8fafc" stroke="#dbe3ed"/>
+<text x="54" y="145" class="label" style="fill:#2563eb">A  LP 松弛：u、v 都连续</text>
+<text x="644" y="145" class="label" style="fill:#047857">B  MILP：u 整数，v 连续</text>
+<line x1="100" y1="500" x2="508.0" y2="500" stroke="#dbe3ed" stroke-width="1"/>
+<text x="85" y="506" class="small" style="fill:#53657e" text-anchor="end">1</text>
+<line x1="100" y1="420" x2="508.0" y2="420" stroke="#dbe3ed" stroke-width="1"/>
+<text x="85" y="426" class="small" style="fill:#53657e" text-anchor="end">2</text>
+<line x1="100" y1="340" x2="508.0" y2="340" stroke="#dbe3ed" stroke-width="1"/>
+<text x="85" y="346" class="small" style="fill:#53657e" text-anchor="end">3</text>
+<line x1="100" y1="260" x2="508.0" y2="260" stroke="#dbe3ed" stroke-width="1"/>
+<text x="85" y="266" class="small" style="fill:#53657e" text-anchor="end">4</text>
+<line x1="260" y1="580" x2="260" y2="196.0" stroke="#dbe3ed" stroke-width="1"/>
+<text x="260" y="605" class="small" style="fill:#53657e" text-anchor="middle">1</text>
+<line x1="420" y1="580" x2="420" y2="196.0" stroke="#dbe3ed" stroke-width="1"/>
+<text x="420" y="605" class="small" style="fill:#53657e" text-anchor="middle">2</text>
+<polygon points="100,580 460.0,580 100,220.0" fill="#dbeafe" fill-opacity="0.85" stroke="#93c5fd" stroke-width="2"/>
+<line x1="100" y1="220.0" x2="460.0" y2="580" stroke="#2563eb" stroke-width="2"/>
+<line x1="100" y1="580" x2="516.0" y2="580" stroke="#64748b" stroke-width="1.6" marker-end="url(#arrow)"/>
+<line x1="100" y1="580" x2="100" y2="188.0" stroke="#64748b" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="86" y="604" class="small" style="fill:#53657e" text-anchor="end">0</text>
+<text x="512.8" y="608.0" class="body">u</text>
+<text x="77" y="188.0" class="body">v</text>
+<text x="185" y="204" class="small" style="fill:#2563eb">2u + v = 4.5</text>
+<circle cx="460.0" cy="580" r="7" fill="#2563eb" stroke="white" stroke-width="2"/>
+<rect x="280" y="270" width="235" height="66" rx="14" fill="#ffffff" stroke="#bfdbfe"/>
+<text x="294" y="295" class="small" style="fill:#2563eb">LP 最优点 (2.25, 0)</text>
+<text x="294" y="319" class="small" style="fill:#2563eb">目标值 −6.75</text>
+<line x1="500" y1="336" x2="460.0" y2="573.6" stroke="#2563eb" stroke-width="1.6"/>
+<text x="77" y="226.0" class="small" style="fill:#53657e" text-anchor="end">4.5</text>
+<line x1="690" y1="500" x2="1098.0" y2="500" stroke="#dbe3ed" stroke-width="1"/>
+<text x="675" y="506" class="small" style="fill:#53657e" text-anchor="end">1</text>
+<line x1="690" y1="420" x2="1098.0" y2="420" stroke="#dbe3ed" stroke-width="1"/>
+<text x="675" y="426" class="small" style="fill:#53657e" text-anchor="end">2</text>
+<line x1="690" y1="340" x2="1098.0" y2="340" stroke="#dbe3ed" stroke-width="1"/>
+<text x="675" y="346" class="small" style="fill:#53657e" text-anchor="end">3</text>
+<line x1="690" y1="260" x2="1098.0" y2="260" stroke="#dbe3ed" stroke-width="1"/>
+<text x="675" y="266" class="small" style="fill:#53657e" text-anchor="end">4</text>
+<line x1="850" y1="580" x2="850" y2="196.0" stroke="#dbe3ed" stroke-width="1"/>
+<text x="850" y="605" class="small" style="fill:#53657e" text-anchor="middle">1</text>
+<line x1="1010" y1="580" x2="1010" y2="196.0" stroke="#dbe3ed" stroke-width="1"/>
+<text x="1010" y="605" class="small" style="fill:#53657e" text-anchor="middle">2</text>
+<polygon points="690,580 1050.0,580 690,220.0" fill="#dbeafe" fill-opacity="0.4" stroke="#93c5fd" stroke-width="2"/>
+<line x1="690" y1="220.0" x2="1050.0" y2="580" stroke="#2563eb" stroke-width="2"/>
+<line x1="690" y1="580" x2="1106.0" y2="580" stroke="#64748b" stroke-width="1.6" marker-end="url(#arrow)"/>
+<line x1="690" y1="580" x2="690" y2="188.0" stroke="#64748b" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="676" y="604" class="small" style="fill:#53657e" text-anchor="end">0</text>
+<text x="1102.8" y="608.0" class="body">u</text>
+<text x="667" y="188.0" class="body">v</text>
+<text x="775" y="204" class="small" style="fill:#2563eb">2u + v = 4.5</text>
+<line x1="690" y1="580" x2="690" y2="220.0" stroke="#047857" stroke-width="6"/>
+<circle cx="690" cy="220.0" r="5" fill="#047857" stroke="white" stroke-width="2"/>
+<line x1="850" y1="580" x2="850" y2="380.0" stroke="#047857" stroke-width="6"/>
+<circle cx="850" cy="380.0" r="5" fill="#047857" stroke="white" stroke-width="2"/>
+<line x1="1010" y1="580" x2="1010" y2="540.0" stroke="#047857" stroke-width="6"/>
+<circle cx="1010" cy="540.0" r="5" fill="#047857" stroke="white" stroke-width="2"/>
+<circle cx="1010" cy="540.0" r="8" fill="#047857" stroke="white" stroke-width="2"/>
+<circle cx="1050.0" cy="580" r="7" fill="white" stroke="#2563eb" stroke-width="2"/>
+<rect x="870" y="270" width="240" height="66" rx="14" fill="#ffffff" stroke="#a7f3d0"/>
+<text x="884" y="295" class="small" style="fill:#047857">MILP 最优点 (2, 0.5)</text>
+<text x="884" y="319" class="small" style="fill:#047857">目标值 −6.5</text>
+<line x1="1090" y1="336" x2="1010" y2="530.4" stroke="#047857" stroke-width="1.6"/>
+<text x="667" y="226.0" class="small" style="fill:#53657e" text-anchor="end">4.5</text>
+<text x="54" y="636" class="small" style="fill:#2563eb">蓝色区域：全部连续可行解</text>
+<text x="644" y="636" class="small" style="fill:#047857">绿色线段：满足整数条件的全部可行解</text>
+<rect x="30" y="674" width="1140" height="58" rx="14" fill="#f1f5f9" stroke="#e2e8f0"/>
+<text x="52" y="710" class="body">关键：只有 u 需要取整数。v 仍可连续变化，因此 MILP 可行域不是孤立格点。</text>
+</svg>

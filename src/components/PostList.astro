@@ -1,0 +1,19 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import FormattedDate from './FormattedDate.astro';
+interface Props { posts: CollectionEntry<'blog'>[] }
+const { posts } = Astro.props;
+---
+<ul class="post-list">
+  {posts.map((post, index) => (
+    <li>
+      <span class="post-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+      <div>
+        <div class="post-meta"><span>{post.id === 'mip-survey' ? '论文精读 · 运筹优化' : '博客文章'}</span><FormattedDate date={post.data.pubDate} /></div>
+        <h3><a href={`/blog/${post.id}/`}>{post.data.title}</a></h3>
+        <p>{post.data.description}</p>
+      </div>
+      <a class="post-arrow" href={`/blog/${post.id}/`} aria-label={`阅读：${post.data.title}`}>↗</a>
+    </li>
+  ))}
+</ul>
