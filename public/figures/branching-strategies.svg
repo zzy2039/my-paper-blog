@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+<title id="title">强分支与伪成本分支</title><desc id="desc">强分支实际试解子LP，伪成本使用历史单位增益估计。两侧为正文不同例子。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker></defs>
+<style>text{font-family:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#17243b} .small{font-size:16px}.body{font-size:19px}.label{font-size:21px;font-weight:600}.title{font-size:28px;font-weight:700}</style>
+<rect width="1200" height="620" fill="white"/>
+<text x="35" y="45" class="title">04  分支决策：试解，还是估计？</text>
+<rect x="35" y="90" width="540" height="380" rx="14" fill="#f8fafc" stroke="#dbe3ed"/>
+<text x="55" y="128" class="label">A  强分支：当前节点真实试解</text>
+<rect x="625" y="90" width="540" height="380" rx="14" fill="#f8fafc" stroke="#dbe3ed"/>
+<text x="645" y="128" class="label">B  伪成本：使用历史统计</text>
+<rect x="60" y="155" width="490" height="100" rx="14" fill="#eff6ff" stroke="#dbe3ed"/>
+<text x="76" y="183" class="label">当前 LP 下界 −13/2</text>
+<text x="76" y="210" class="small" style="fill:#53657e">候选 y = 1.5；分别加入两个分支条件</text>
+<rect x="60" y="300" width="230" height="100" rx="14" fill="#eff6ff" stroke="#dbe3ed"/>
+<text x="76" y="328" class="label">y ≤ 1</text>
+<text x="76" y="355" class="small" style="fill:#53657e">L = −13/3</text>
+<text x="76" y="380" class="small" style="fill:#53657e">增益 = 13/6</text>
+<rect x="310" y="300" width="240" height="100" rx="14" fill="#eff6ff" stroke="#dbe3ed"/>
+<text x="326" y="328" class="label">y ≥ 2</text>
+<text x="326" y="355" class="small" style="fill:#53657e">L = −16/3</text>
+<text x="326" y="380" class="small" style="fill:#53657e">增益 = 7/6</text>
+<line x1="180" y1="255" x2="180" y2="292" stroke="#53657e" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="430" y1="255" x2="430" y2="292" stroke="#53657e" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="60" y="445" class="body" style="fill:#2563eb">实际 LP 调用 → 乘积得分 91/36</text>
+<rect x="650" y="155" width="490" height="100" rx="14" fill="#eff6ff" stroke="#dbe3ed"/>
+<text x="666" y="183" class="label">历史单位增益 × 本次分数距离</text>
+<text x="666" y="210" class="small" style="fill:#53657e">这里使用独立的教学统计，不是左图的历史</text>
+<text x="655" y="305" class="small" style="fill:#53657e">候选        预测向下 / 向上增益       乘积</text>
+<text x="655" y="350" class="body">x₁ = 3.7       2.1 / 1.5                 3.15</text>
+<text x="655" y="392" class="body" style="fill:#047857">x₂ = 4.5       2.0 / 2.0                 4.00</text>
+<text x="655" y="445" class="body" style="fill:#047857">选择 x₂；预测质量仍需实际求解检验</text>
+<rect x="35" y="500" width="1130" height="85" rx="14" fill="#fffbeb" stroke="#dbe3ed"/>
+<text x="55" y="533" class="label" style="fill:#b45309">可靠性分支：统计不足时试解；统计充分时使用伪成本。</text>
+<text x="55" y="565" class="body" style="fill:#53657e">权衡：单次决策成本 vs. 后续搜索规模。不能只比较搜索节点数。</text>
+</svg>

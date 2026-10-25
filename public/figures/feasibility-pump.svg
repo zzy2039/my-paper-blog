@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="770" viewBox="0 0 1200 770" role="img" aria-labelledby="title desc">
+<title id="title">可行性泵的循环与扰动</title><desc id="desc">教学二元例子，目标min x+2y，约束x+y≥1.5。半整数向下舍入会形成循环，扰动可跳出。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker></defs>
+<style>text{font-family:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#17243b} .small{font-size:16px}.body{font-size:19px}.label{font-size:21px;font-weight:600}.title{font-size:28px;font-weight:700}</style>
+<rect width="1200" height="770" fill="white"/>
+<text x="35" y="45" class="title">08  可行性泵：在整数性与连续可行性之间往返</text>
+<text x="35" y="85" class="body" style="fill:#53657e">min x + 2y   |   x + y ≥ 1.5   |   x, y ∈ {0, 1}</text>
+<rect x="35" y="140" width="330" height="100" rx="14" fill="#eff6ff" stroke="#dbe3ed"/>
+<text x="51" y="168" class="label">1  LP 可行点 (1, 0.5)</text>
+<text x="51" y="195" class="small" style="fill:#53657e">目标值 2</text>
+<text x="51" y="220" class="small" style="fill:#53657e">满足线性约束，但不是整数解</text>
+<rect x="435" y="140" width="330" height="100" rx="14" fill="#fff7ed" stroke="#dbe3ed"/>
+<text x="451" y="168" class="label">2  舍入为整数点 (1, 0)</text>
+<text x="451" y="195" class="small" style="fill:#53657e">本例将 0.5 向下舍入</text>
+<text x="451" y="220" class="small" style="fill:#53657e">1 + 0 &lt; 1.5：不可行</text>
+<rect x="835" y="140" width="330" height="100" rx="14" fill="#eff6ff" stroke="#dbe3ed"/>
+<text x="851" y="168" class="label">3  L₁ 投影回 LP 区域</text>
+<text x="851" y="195" class="small" style="fill:#53657e">最近点又是 (1, 0.5)</text>
+<text x="851" y="220" class="small" style="fill:#53657e">距离 0.5；再次舍入仍为 (1, 0)</text>
+<line x1="365" y1="190" x2="425" y2="190" stroke="#53657e" stroke-width="2" marker-end="url(#arrow)"/>
+<line x1="765" y1="190" x2="825" y2="190" stroke="#53657e" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M 1000 240 V 300 H 200 V 245" fill="none" stroke="#b45309" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="600" y="290" class="body" style="fill:#b45309" text-anchor="middle">检测到循环</text>
+<line x1="600" y1="310" x2="600" y2="365" stroke="#53657e" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="435" y="375" width="330" height="100" rx="14" fill="#fffbeb" stroke="#dbe3ed"/>
+<text x="451" y="403" class="label">4  扰动整数目标</text>
+<text x="451" y="430" class="small" style="fill:#53657e">翻转第二位，得到 (1, 1)</text>
+<text x="451" y="455" class="small" style="fill:#53657e">再次检查原约束</text>
+<line x1="600" y1="475" x2="600" y2="525" stroke="#53657e" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="435" y="535" width="330" height="100" rx="14" fill="#ecfdf5" stroke="#dbe3ed"/>
+<text x="451" y="563" class="label">5  返回可行解 (1, 1)</text>
+<text x="451" y="590" class="small" style="fill:#53657e">1 + 1 ≥ 1.5，目标值 3</text>
+<text x="451" y="615" class="small" style="fill:#53657e">本例唯一整数可行解</text>
+<text x="35" y="700" class="body" style="fill:#b45309">注意：这里只展示一次成功的教学运行；一般问题可能循环或达到预算上限而未找到可行解。</text>
+</svg>

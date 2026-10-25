@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -7,6 +7,7 @@ import PostList from '../components/PostList.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const featured = posts.find((post) => post.id === 'mip-survey');
+const chapters = featured ? (await render(featured)).headings.filter(h => h.depth === 1 && h.text.startsWith('第 ')) : [];
 ---
 <!doctype html>
 <html lang="zh-CN">
@@ -25,7 +26,7 @@ const featured = posts.find((post) => post.id === 'mip-survey');
           <p class="eyebrow">精选笔记 / 01</p>
           <h2 id="featured-title">{featured.data.title}</h2>
           <p>{featured.data.description}</p>
-          <span class="note-status">第一章已完成 · 含数值推导与 SVG 图解</span>
+          <span class="note-status">完整九章 · 8 张 SVG 图解 · 可下载笔记</span>
           <a class="read-button" href={`/blog/${featured.id}/`}>开始阅读 <span aria-hidden="true">→</span></a>
         </div>
         <a class="featured-figure" href={`/blog/${featured.id}/`} aria-label="阅读 MIP 学习笔记">
@@ -33,9 +34,14 @@ const featured = posts.find((post) => post.id === 'mip-survey');
           <span>FIG. 01 / 从连续可行域到混合整数决策</span>
         </a>
       </section>}
+      <section class="chapter-section" aria-labelledby="chapter-title">
+        <div class="section-heading"><div><p class="eyebrow">A GUIDED READING</p><h2 id="chapter-title">沿着问题，逐章深入</h2></div><span class="section-hint">从基础概念到学习型求解器</span></div>
+        <div class="chapter-grid">{chapters.map((chapter, i) => <a class="chapter-card" href={`/blog/mip-survey/#${chapter.slug}`}><span class="chapter-number">{String(i + 1).padStart(2, '0')}</span><h3>{chapter.text.replace(/^第 \d+ 章\s*/, '')}</h3><span class="chapter-arrow" aria-hidden="true">↗</span></a>)}</div>
+      </section>
       <section class="notes-section" aria-labelledby="notes-title">
         <div class="section-heading"><div><p class="eyebrow">READING LOG</p><h2 id="notes-title">文章与学习记录</h2></div><a href="/blog/">全部文章 →</a></div>
-        <PostList posts={posts} />
+        <PostList posts={posts.filter(post => post.id === 'mip-survey')} />
+        <details class="template-notes"><summary>模板示例与写作参考 · {posts.filter(post => post.id !== 'mip-survey').length} 篇</summary><PostList posts={posts.filter(post => post.id !== 'mip-survey')} /></details>
       </section>
     </main>
     <Footer />

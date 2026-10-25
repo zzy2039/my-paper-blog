@@ -12,18 +12,28 @@ import '../styles/article.css';
 type Props = CollectionEntry<'blog'>['data'] & { headings?: MarkdownHeading[]; readingMinutes?: number };
 const { title, description, pubDate, updatedDate, heroImage, headings = [], readingMinutes } = Astro.props;
 const toc = headings.filter((heading) => heading.depth <= 3 && heading.text !== title);
+const groups: { heading: MarkdownHeading; children: MarkdownHeading[] }[] = [];
+for (const heading of toc) {
+  if (heading.depth === 1 || groups.length === 0 || ['参考文献与核查说明', '阅读与资源说明'].includes(heading.text)) groups.push({ heading, children: [] });
+  else if (heading.depth === 2) groups[groups.length - 1].children.push(heading);
+}
+const isSurvey = Astro.url.pathname.includes('/blog/mip-survey');
 const hasDocumentTitle = headings[0]?.depth === 1 && headings[0]?.text === title;
 ---
 <!doctype html>
 <html lang="zh-CN">
   <head><BaseHead title={title} description={description} /></head>
-  <body>
+  <body id="page-top">
+    <div class="reading-progress" aria-hidden="true"><span></span></div>
     <Header />
     <main id="main-content" class:list={['reading-layout', { 'without-toc': toc.length === 0 }]}>
       {toc.length > 0 && <aside class="toc-sidebar">
         <details class="toc" open>
           <summary>文章目录 <span aria-hidden="true">↕</span></summary>
-          <nav aria-label="文章目录"><ol>{toc.map((heading) => <li class={`level-${heading.depth}`}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol></nav>
+          <nav aria-label="文章目录"><ol>{groups.map(({heading, children}) => <li class="toc-group">
+            <a class="chapter-link" href={`#${heading.slug}`}>{heading.text}</a>
+            {children.length > 0 && <details class="toc-sections"><summary>展开本章小节</summary><ol>{children.map(child => <li><a href={`#${child.slug}`}>{child.text}</a></li>)}</ol></details>}
+          </li>)}</ol></nav>
         </details>
       </aside>}
       <article class="reading-article">
@@ -32,6 +42,7 @@ const hasDocumentTitle = headings[0]?.depth === 1 && headings[0]?.text === title
           <div class="article-meta"><FormattedDate date={pubDate} />{readingMinutes && <span>约 {readingMinutes} 分钟阅读</span>}</div>
           <h1>{title}</h1>
           <p class="article-description">{description}</p>
+          {isSurvey && <div class="article-tools"><span>9 章 · 8 张图解 · 数值案例</span><a href="/downloads/mip-survey-complete.zip" download>下载 Markdown + SVG ↓</a></div>}
           {updatedDate && <p class="article-meta">更新于 <FormattedDate date={updatedDate} /></p>}
         </header>
         {heroImage && <Image class="article-hero" width={1020} height={510} src={heroImage} alt="" />}
@@ -39,8 +50,17 @@ const hasDocumentTitle = headings[0]?.depth === 1 && headings[0]?.text === title
         <div class="article-end"><span>本篇阅读结束</span><a href="/blog/">继续浏览笔记 →</a></div>
       </article>
     </main>
+    <a class="back-top" href="#page-top" aria-label="返回页首">↑</a>
     <Footer />
     <script>
+      const progress = document.querySelector<HTMLElement>('.reading-progress span');
+      const updateProgress = () => {
+        const range = document.documentElement.scrollHeight - window.innerHeight;
+        if (progress) progress.style.width = `${range > 0 ? Math.min(100, window.scrollY / range * 100) : 0}%`;
+      };
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', updateProgress);
+      updateProgress();
       const details = document.querySelector<HTMLDetailsElement>('.toc');
       const mobile = window.matchMedia('(max-width: 1000px)');
       const syncToc = () => { if (details) details.open = !mobile.matches; };

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+<title id="title">MILP二部图表示</title><desc id="desc">两个约束节点与三个变量节点，仅非零系数对应四条边。</desc>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/></marker></defs>
+<style>text{font-family:"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif;fill:#17243b} .small{font-size:16px}.body{font-size:19px}.label{font-size:21px;font-weight:600}.title{font-size:28px;font-weight:700}</style>
+<rect width="1200" height="560" fill="white"/>
+<text x="35" y="45" class="title">05  把约束矩阵表示成二部图</text>
+<text x="35" y="85" class="body" style="fill:#53657e">教学例子：2x₁ + x₂ ≤ 5；x₂ + 3x₃ ≤ 4。边上标注矩阵系数。</text>
+<line x1="320" y1="220" x2="850" y2="150" stroke="#2563eb" stroke-width="3"/>
+<rect x="565" y="143" width="32" height="32" rx="14" fill="white" stroke="white"/>
+<text x="580" y="165" class="body" style="fill:#2563eb" text-anchor="middle">2</text>
+<line x1="320" y1="220" x2="850" y2="300" stroke="#2563eb" stroke-width="3"/>
+<rect x="490" y="236" width="32" height="32" rx="14" fill="white" stroke="white"/>
+<text x="505" y="258" class="body" style="fill:#2563eb" text-anchor="middle">1</text>
+<line x1="320" y1="400" x2="850" y2="300" stroke="#2563eb" stroke-width="3"/>
+<rect x="665" y="333" width="32" height="32" rx="14" fill="white" stroke="white"/>
+<text x="680" y="355" class="body" style="fill:#2563eb" text-anchor="middle">1</text>
+<line x1="320" y1="400" x2="850" y2="450" stroke="#2563eb" stroke-width="3"/>
+<rect x="520" y="423" width="32" height="32" rx="14" fill="white" stroke="white"/>
+<text x="535" y="445" class="body" style="fill:#2563eb" text-anchor="middle">3</text>
+<rect x="180" y="180" width="140" height="80" rx="14" fill="#ecfdf5" stroke="#dbe3ed"/>
+<text x="250" y="228" class="label" style="fill:#047857" text-anchor="middle">c₁</text>
+<rect x="180" y="360" width="140" height="80" rx="14" fill="#ecfdf5" stroke="#dbe3ed"/>
+<text x="250" y="408" class="label" style="fill:#047857" text-anchor="middle">c₂</text>
+<circle cx="890" cy="150" r="40" fill="#2563eb" stroke="white" stroke-width="2"/>
+<text x="890" y="157" class="label" style="fill:white" text-anchor="middle">x₁</text>
+<circle cx="890" cy="300" r="40" fill="#2563eb" stroke="white" stroke-width="2"/>
+<text x="890" y="307" class="label" style="fill:white" text-anchor="middle">x₂</text>
+<circle cx="890" cy="450" r="40" fill="#2563eb" stroke="white" stroke-width="2"/>
+<text x="890" y="457" class="label" style="fill:white" text-anchor="middle">x₃</text>
+<text x="180" y="140" class="body" style="fill:#047857">约束节点</text>
+<text x="950" y="300" class="body" style="fill:#2563eb">变量节点</text>
+<text x="35" y="525" class="body" style="fill:#53657e">消息传递聚合相邻节点的信息；节点数随实例变化，不需要把整个矩阵拉成固定长度向量。</text>
+</svg>
