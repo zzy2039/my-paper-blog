@@ -5,13 +5,16 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import PostList from '../../components/PostList.astro';
 import { SITE_TITLE } from '../../consts';
-const posts = (await getCollection('blog')).sort((a,b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const publishedIds = ['mip-survey', 'combinatorics-exercises'];
+const postRank = (id: string) => { const i = publishedIds.indexOf(id); return i < 0 ? 100 : i; };
+const posts = (await getCollection('blog')).sort((a,b) => postRank(a.id) - postRank(b.id) || b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 <!doctype html>
 <html lang="zh-CN">
   <head><BaseHead title={`文章归档 · ${SITE_TITLE}`} description="机器学习、运筹优化与论文精读笔记。" /></head>
   <body><Header /><main id="main-content" class="home-main">
-    <div class="archive-heading"><p class="eyebrow">READING LOG / {posts.length} 篇文章</p><h1>文章归档</h1><p>让知识有出处，让理解有过程。</p></div>
-    <PostList posts={posts} />
+    <div class="archive-heading"><p class="eyebrow">READING LOG / {posts.filter(post => publishedIds.includes(post.id)).length} 篇正式文章</p><h1>文章归档</h1><p>让知识有出处，让理解有过程。</p></div>
+    <PostList posts={posts.filter(post => publishedIds.includes(post.id))} />
+    <details class="template-notes"><summary>模板示例与写作参考 · {posts.filter(post => !publishedIds.includes(post.id)).length} 篇</summary><PostList posts={posts.filter(post => !publishedIds.includes(post.id))} /></details>
   </main><Footer /></body>
 </html>

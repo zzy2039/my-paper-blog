@@ -5,7 +5,9 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PostList from '../components/PostList.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const publishedIds = ['mip-survey', 'combinatorics-exercises'];
+const postRank = (id: string) => { const i = publishedIds.indexOf(id); return i < 0 ? 100 : i; };
+const posts = (await getCollection('blog')).sort((a, b) => postRank(a.id) - postRank(b.id) || b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const featured = posts.find((post) => post.id === 'mip-survey');
 const chapters = featured ? (await render(featured)).headings.filter(h => h.depth === 1 && h.text.startsWith('第 ')) : [];
 ---
@@ -40,8 +42,8 @@ const chapters = featured ? (await render(featured)).headings.filter(h => h.dept
       </section>
       <section class="notes-section" aria-labelledby="notes-title">
         <div class="section-heading"><div><p class="eyebrow">READING LOG</p><h2 id="notes-title">文章与学习记录</h2></div><a href="/blog/">全部文章 →</a></div>
-        <PostList posts={posts.filter(post => post.id === 'mip-survey')} />
-        <details class="template-notes"><summary>模板示例与写作参考 · {posts.filter(post => post.id !== 'mip-survey').length} 篇</summary><PostList posts={posts.filter(post => post.id !== 'mip-survey')} /></details>
+        <PostList posts={posts.filter(post => publishedIds.includes(post.id))} />
+        <details class="template-notes"><summary>模板示例与写作参考 · {posts.filter(post => !publishedIds.includes(post.id)).length} 篇</summary><PostList posts={posts.filter(post => !publishedIds.includes(post.id))} /></details>
       </section>
     </main>
     <Footer />
