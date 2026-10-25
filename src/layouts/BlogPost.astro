@@ -13,11 +13,13 @@ type Props = CollectionEntry<'blog'>['data'] & { headings?: MarkdownHeading[]; r
 const { title, description, pubDate, updatedDate, heroImage, headings = [], readingMinutes } = Astro.props;
 const toc = headings.filter((heading) => heading.depth <= 3 && heading.text !== title);
 const groups: { heading: MarkdownHeading; children: MarkdownHeading[] }[] = [];
+const chapterDepth = Math.min(...toc.map(heading => heading.depth));
 for (const heading of toc) {
-  if (heading.depth === 1 || groups.length === 0 || ['参考文献与核查说明', '阅读与资源说明'].includes(heading.text)) groups.push({ heading, children: [] });
-  else if (heading.depth === 2) groups[groups.length - 1].children.push(heading);
+  if (heading.depth === chapterDepth || groups.length === 0 || ['参考文献与核查说明', '阅读与资源说明'].includes(heading.text)) groups.push({ heading, children: [] });
+  else if (heading.depth === chapterDepth + 1) groups[groups.length - 1].children.push(heading);
 }
-const isSurvey = Astro.url.pathname.includes('/blog/mip-survey');
+const isSurvey = Astro.url.pathname.replace(/\/$/, '') === '/blog/mip-survey';
+const isTranslation = Astro.url.pathname.replace(/\/$/, '') === '/blog/mip-survey-translation';
 const hasDocumentTitle = headings[0]?.depth === 1 && headings[0]?.text === title;
 ---
 <!doctype html>
@@ -43,6 +45,7 @@ const hasDocumentTitle = headings[0]?.depth === 1 && headings[0]?.text === title
           <h1>{title}</h1>
           <p class="article-description">{description}</p>
           {isSurvey && <div class="article-tools"><span>9 章 · 8 张图解 · 数值案例</span><a href="/downloads/mip-survey-complete.zip" download>下载 Markdown + SVG ↓</a></div>}
+          {isTranslation && <div class="article-tools"><span>5 张原图 · 原文页码 · 校订说明</span><a href="/downloads/mip-translation-reviewed.zip" download>下载 Markdown + SVG 原图 ↓</a></div>}
           {updatedDate && <p class="article-meta">更新于 <FormattedDate date={updatedDate} /></p>}
         </header>
         {heroImage && <Image class="article-hero" width={1020} height={510} src={heroImage} alt="" />}

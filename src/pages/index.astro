@@ -5,7 +5,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PostList from '../components/PostList.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-const publishedIds = ['mip-survey', 'combinatorics-exercises'];
+const publishedIds = ['mip-survey', 'combinatorics-exercises', 'mip-survey-translation', 'solver-beginners-guide'];
 const postRank = (id: string) => { const i = publishedIds.indexOf(id); return i < 0 ? 100 : i; };
 const posts = (await getCollection('blog')).sort((a, b) => postRank(a.id) - postRank(b.id) || b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 const featured = posts.find((post) => post.id === 'mip-survey');
